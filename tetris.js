@@ -13,32 +13,32 @@ const GAME = {
   dropCounter: 0,
   dropStart: 0,
   colors: [
-    '#FF0D72',
-    '#0DC2FF',
-    '#0DFF72',
-    '#F538FF',
-    '#FF8E0D',
-    '#FFE138',
-    '#3877FF',
+    'cyan',
+    'blue',
+    'orange',
+    'yellow',
+    'green',
+    'red',
+    'purple'
   ]
 }
 
-function arenaSweep() {
-    let rowCount = 1;
-    outer: for (let y = GAME.board.length -1; y > 0; y--) {
-        for (let x = 0; x < GAME.board[y].length; x++) {
-            if (GAME.board[y][x] === 0) {
-                continue outer;
-            }
+const arenaSweep = () => {
+  let rowCount = 1;
+  outer: for (let y = GAME.board.length -1; y > 0; y--) {
+    for (let x = 0; x < GAME.board[y].length; x++) {
+        if (GAME.board[y][x] === 0) {
+            continue outer;
         }
-
-        const row = GAME.board.splice(y, 1)[0].fill(0);
-        GAME.board.unshift(row);
-        y--;
-
-        GAME.score += rowCount * 10;
-        rowCount *= 2;
     }
+
+    const row = GAME.board.splice(y, 1)[0].fill(0);
+    GAME.board.unshift(row);
+    y--;
+
+    GAME.score += rowCount * 10;
+    rowCount *= 2;
+  }
 }
 
 const collide = board => {
