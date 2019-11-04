@@ -1,0 +1,11 @@
+body {
+	background-color: '#000';
+}
+
+#tetris {
+	height: 80vh !important;
+}
+
+#preview {
+	height: 10vh !important;
+}

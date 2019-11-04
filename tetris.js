@@ -3,16 +3,22 @@
 const canvas = document.getElementById('tetris');
 const context = canvas.getContext('2d');
 
+const cvs = document.getElementById('preview');
+const ctx = cvs.getContext('2d');
+
 canvas.width = 240;
 canvas.height = 400;
 
 context.scale(20, 20);
+ctx.scale(15, 15);
+
 
 const GAME = {
   board: null,
   start: Date.now(),
   coords: { x: 0, y: 0 },
   tetromino: null,
+  preview: null,
   score: 0,
   dropSpeed: 1000,
   dropCounter: 0,
@@ -51,7 +57,7 @@ const draw = () => {
   context.fillStyle = '#000';
   context.fillRect(0, 0, canvas.width, canvas.height);
 
-  drawBoard(GAME.board, {x: 0, y: 0});
+  drawBoard(GAME.board, { x: 0, y: 0 });
   drawBoard(GAME.tetromino, GAME.coords);
 }
 
@@ -137,7 +143,10 @@ const tallyRows = () => {
 }
 
 const resetGame = () => {
-  GAME.tetromino = generateTetromino();
+  console.log('reset game')
+  GAME.tetromino = GAME.preview ? GAME.preview : generateTetromino();
+  GAME.preview = generateTetromino();
+  showPreview();
   GAME.coords.y = 0;
   GAME.coords.x = 5;            
   if (collisionDetected()) {
@@ -148,9 +157,9 @@ const resetGame = () => {
 }
 
 const startAnimation = (time = 0) => {
-  const deltaTime = time - GAME.dropStart;
+  const delta = time - GAME.dropStart;
 
-  GAME.dropCounter += deltaTime;
+  GAME.dropCounter += delta;
   if (GAME.dropCounter > GAME.dropSpeed) {
     drop();
   }
@@ -161,7 +170,21 @@ const startAnimation = (time = 0) => {
   requestAnimationFrame(startAnimation);
 }
 
-const updateScore = () => $('#score').text(GAME.score);
+const updateScore = () => $('#score').text(`Score: ${GAME.score}`);
+
+const showPreview = () => {
+  ctx.fillStyle = '#000';
+  ctx.fillRect(0, 0, cvs.width, cvs.height);
+  GAME.preview.forEach((row, y) => {
+    row.forEach((value, x) => {
+      console.log('value')
+      if (value !== 0) {
+        ctx.fillStyle = GAME.colors[value - 1];
+        ctx.fillRect(x + 3, y + 2, 1, 1);
+      }
+    });
+  });
+};
 
 const readKeyInput = () => {
   $(document).on('keydown', ({code}) => {
@@ -182,7 +205,12 @@ const readKeyInput = () => {
   })
 }
 
+const toggleDarkMode = () => {
+
+}
+
 const init = () => {
+  $('body').css('background-color', 'black')
   GAME.board = createBoard(12, 20);
   readKeyInput()
   resetGame();

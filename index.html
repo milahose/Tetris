@@ -1,27 +1,34 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Tetris</title>
-    <style>
-      body {
-        background: #202028;
-        color: #fff;
-        font-family: sans-serif;
-        font-size: 2em;
-        text-align: center;
-      }
-      canvas {
-        border: solid .2em #fff;
-        height: 90vh;
-      }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Tetris</title>
 </head>
 <body>
-    <div id="score"></div>
-    <canvas id="tetris"></canvas>
-    
-    <!-- scripts -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="tetrominoes.js"></script>
-    <script src="tetris.js"></script>
+  <div class="d-flex justify-content-center mb-3 mt-3">
+    <h1>Tetris</h1>
+  </div>
+  <div class="d-flex justify-content-center mb-2">
+    <div class="p-2">
+      <canvas id="tetris">
+        You're browser does not support canvas. Please try a different browser (Chrome is always a good choice!).
+      </canvas>
+    </div>
+    <div class="p-2">
+      <canvas id="preview" width="120" height="120">
+        Unable to display preview. Please try a different browser.
+      </canvas>
+      <div id="score"></div>
+    </div>
+  </div>
+
+  <!-- scripts -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="tetrominoes.js"></script>
+  <script src="tetris.js"></script>
 </body>
 </html>
