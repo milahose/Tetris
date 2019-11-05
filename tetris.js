@@ -10,7 +10,7 @@ canvas.width = 240;
 canvas.height = 400;
 
 context.scale(20, 20);
-ctx.scale(15, 15);
+ctx.scale(20, 20);
 
 
 const GAME = {
@@ -20,6 +20,9 @@ const GAME = {
   tetromino: null,
   preview: null,
   score: 0,
+  level: 1,
+  lines: 0,
+  linesToNextLevel: 10,
   dropSpeed: 1000,
   dropCounter: 0,
   dropStart: 0,
@@ -35,7 +38,7 @@ const GAME = {
 }
 
 const generateTetromino = () => (
-  tetrominoes['ILJOZST'[Math.floor(Math.random() * 7)]]
+  tetrominoes['ILJOZSTILJOZSTILJOZSTILJOZSTILJOZSTILJOZSTILJOZST'[Math.floor(Math.random() * 49 / 7)]]
 )
 
 const createBoard = (width, height) => (
@@ -137,13 +140,26 @@ const tallyRows = () => {
     GAME.board.unshift(row);
     ++y;
 
-    GAME.score += rowCount * 10;
+    GAME.lines++;
+    updateLines();
+
+    if (GAME.lines >= GAME.linesToNextLevel) {
+      GAME.level = Math.floor(GAME.lines / 10);
+      updateLevel();
+      GAME.dropSpeed -= 30;
+      GAME.linesToNextLevel = GAME.level * 10;
+    }
+
+    if (rowCount >= 4) {
+      GAME.score += rowCount * 800;
+    } else {
+      GAME.score += rowCount * 100;
+    }
     rowCount *= 2;
   }
 }
 
 const resetGame = () => {
-  console.log('reset game')
   GAME.tetromino = GAME.preview ? GAME.preview : generateTetromino();
   GAME.preview = generateTetromino();
   showPreview();
@@ -171,16 +187,17 @@ const startAnimation = (time = 0) => {
 }
 
 const updateScore = () => $('#score').text(`Score: ${GAME.score}`);
+const updateLines = () => $('#lines').text(`Lines: ${GAME.lines}`);
+const updateLevel = () => $('#level').text(`Level: ${GAME.level}`);
 
 const showPreview = () => {
   ctx.fillStyle = '#000';
   ctx.fillRect(0, 0, cvs.width, cvs.height);
   GAME.preview.forEach((row, y) => {
     row.forEach((value, x) => {
-      console.log('value')
       if (value !== 0) {
         ctx.fillStyle = GAME.colors[value - 1];
-        ctx.fillRect(x + 3, y + 2, 1, 1);
+        ctx.fillRect(x + 1, y + 1, 1, 1);
       }
     });
   });

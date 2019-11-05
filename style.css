@@ -2,10 +2,38 @@ body {
 	background-color: '#000';
 }
 
+.container {
+  max-width: 90%;
+}
+
 #tetris {
-	height: 80vh !important;
+  height: 80vh !important;
 }
 
 #preview {
-	height: 10vh !important;
+	height: 15vh !important;
+}
+
+#tetris {
+  border: 5px solid grey;
+}
+
+h1, p {
+  color: grey;
+}
+
+p {
+  margin-left: 2px;
+}
+
+@media screen and (max-width: 640px) {
+  #tetris {
+    height: 70vh !important;
+  }
+}
+
+@media screen and (max-width: 530px) {
+  #tetris {
+    height: 50vh !important;
+  }
 }
