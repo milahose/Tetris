@@ -1,5 +1,7 @@
 'use strict';
 
+let requestId = null;
+
 const canvas = document.getElementById('tetris');
 const context = canvas.getContext('2d');
 
@@ -103,7 +105,7 @@ const merge = board => {
 }
 
 const collisionDetected = () => {
-  const { board, tetromino, coords } = GAME;
+  const { board, tetromino, preview, coords } = GAME;
   for (let y = 0; y < tetromino.length; y++) {
     for (let x = 0; x < tetromino[y].length; x++) {
       if (tetromino[y][x] !== 0 &&
@@ -166,9 +168,12 @@ const resetGame = () => {
   GAME.coords.y = 0;
   GAME.coords.x = 5;            
   if (collisionDetected()) {
-    GAME.board.forEach(row => row.fill(0));
-    GAME.score = 0;
-    updateScore();
+    cancelAnimationFrame(requestId);
+    requestId = null;
+    
+    // GAME.board.forEach(row => row.fill(0));
+    // GAME.score = 0;
+    // updateScore();
   }
 }
 
@@ -183,7 +188,7 @@ const startAnimation = (time = 0) => {
   GAME.dropStart = time;
 
   draw();
-  requestAnimationFrame(startAnimation);
+  requestId = requestAnimationFrame(startAnimation);
 }
 
 const updateScore = () => $('#score').text(`Score: ${GAME.score}`);
@@ -210,7 +215,7 @@ const readKeyInput = () => {
         rotate();
         break;
       case 'ArrowDown':
-        drop();
+        requestId && drop();
         break;
       case 'ArrowRight':
         move(1);
