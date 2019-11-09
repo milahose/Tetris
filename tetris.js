@@ -234,12 +234,25 @@ const readKeyInput = () => {
  })
 
 const init = () => {
+  readKeyInput();
   $('body').css('background-color', 'black')
-  GAME.board = createBoard(12, 20);
-  readKeyInput()
-  resetGame();
-  updateScore();
-  startAnimation();
+
+  $('.play').on('click', () => {
+    GAME.board = createBoard(12, 20);
+    resetGame();
+    GAME.coords.y = -1;
+    updateScore();
+    startAnimation();
+  })
+
+
+
+
+  // GAME.board = createBoard(12, 20);
+  // readKeyInput()
+  // resetGame();
+  // updateScore();
+  // startAnimation();
 }
 
 $(init);
