@@ -31,8 +31,8 @@ const GAME = {
   colors: [
     'cyan',
     'blue',
-    'orange',
-    'yellow',
+    'darkorange',
+    'gold',
     'green',
     'red',
     'purple'
