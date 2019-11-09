@@ -227,9 +227,11 @@ const readKeyInput = () => {
   })
 }
 
-const toggleDarkMode = () => {
-
-}
+ $('#modal').modal({
+  show: true,
+  keyboard: false,
+  backdrop: 'static',
+ })
 
 const init = () => {
   $('body').css('background-color', 'black')
