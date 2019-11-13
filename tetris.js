@@ -227,15 +227,17 @@ const readKeyInput = () => {
   })
 }
 
- $('#modal').modal({
-  show: true,
-  keyboard: false,
-  backdrop: 'static',
- })
+// MAKE the well (just the array?) 3 lines deeper above but don't fill the canvas
 
 const init = () => {
   readKeyInput();
   $('body').css('background-color', 'black')
+
+  $('#modal').modal({
+    show: true,
+    keyboard: false,
+    backdrop: 'static',
+  })
 
   $('.play').on('click', () => {
     GAME.board = createBoard(12, 20);
