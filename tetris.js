@@ -21,6 +21,7 @@ const GAME = {
   coords: { x: 0, y: 0 },
   tetromino: null,
   preview: null,
+  over: false,
   score: 0,
   level: 1,
   lines: 0,
@@ -164,10 +165,10 @@ const tallyRows = () => {
 const resetGame = () => {
   GAME.tetromino = GAME.preview ? GAME.preview : generateTetromino();
   GAME.preview = generateTetromino();
-  showPreview();
   GAME.coords.y = 0;
   GAME.coords.x = 5;            
   if (collisionDetected()) {
+    GAME.over = true;
     cancelAnimationFrame(requestId);
     requestId = null;
     
@@ -175,6 +176,7 @@ const resetGame = () => {
     // GAME.score = 0;
     // updateScore();
   }
+  !GAME.over && showPreview();
 }
 
 const startAnimation = (time = 0) => {
@@ -187,8 +189,10 @@ const startAnimation = (time = 0) => {
 
   GAME.dropStart = time;
 
-  draw();
-  requestId = requestAnimationFrame(startAnimation);
+  if (!GAME.over) {
+    draw();
+    requestId = requestAnimationFrame(startAnimation);
+  }
 }
 
 const updateScore = () => $('#score').text(`Score: ${GAME.score}`);
