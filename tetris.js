@@ -1,20 +1,24 @@
 'use strict';
 
+// used to start/stop requestAnimationFrame
 let requestId = null;
 
+// The game's canvas
 const canvas = document.getElementById('tetris');
 const context = canvas.getContext('2d');
-
-const cvs = document.getElementById('preview');
-const ctx = cvs.getContext('2d');
 
 canvas.width = 240;
 canvas.height = 400;
 
 context.scale(20, 20);
+
+// The preview's canvas
+const cvs = document.getElementById('preview');
+const ctx = cvs.getContext('2d');
+
 ctx.scale(20, 20);
 
-
+// Game data
 const GAME = {
   board: null,
   start: Date.now(),
@@ -38,6 +42,24 @@ const GAME = {
     'red',
     'purple'
   ]
+}
+
+const clearGame = () => {
+  GAME.board = createBoard(12, 20);
+  GAME.start = Date.now();
+  GAME.coords = { x: 0, y: -1 };
+  GAME.tetromino = null;
+  GAME.preview = null;
+  GAME.over = false;
+  GAME.socre = 0;
+  GAME.level = 1;
+  GAME.lines = 0;
+  GAME.linesToNextLevel = 10;
+  GAME.dropSpeed = 1000;
+  GAME.dropCounter = 0;
+  GAME.dropStart = 0;
+
+  startAnimation();
 }
 
 const generateTetromino = () => (
@@ -106,7 +128,7 @@ const merge = board => {
 }
 
 const collisionDetected = () => {
-  const { board, tetromino, preview, coords } = GAME;
+  const { board, tetromino, coords } = GAME;
   for (let y = 0; y < tetromino.length; y++) {
     for (let x = 0; x < tetromino[y].length; x++) {
       if (tetromino[y][x] !== 0 &&
@@ -171,10 +193,17 @@ const resetGame = () => {
     GAME.over = true;
     cancelAnimationFrame(requestId);
     requestId = null;
+
+    $('.modal-body').text('Game over!');
+    $('.modal-footer').html(
+      `<button class="btn btn-info modal-btn play" data-dismiss="modal" style="width: 140px">Play again?</button>`
+    );
     
-    // GAME.board.forEach(row => row.fill(0));
-    // GAME.score = 0;
-    // updateScore();
+    $('#modal').modal({
+      show: true,
+      keyboard: false,
+      backdrop: 'static',
+    });
   }
   !GAME.over && showPreview();
 }
@@ -231,8 +260,6 @@ const readKeyInput = () => {
   })
 }
 
-// MAKE the well (just the array?) 3 lines deeper above but don't fill the canvas
-
 const init = () => {
   readKeyInput();
   $('body').css('background-color', 'black')
@@ -243,22 +270,26 @@ const init = () => {
     backdrop: 'static',
   })
 
-  $('.play').on('click', () => {
-    GAME.board = createBoard(12, 20);
-    resetGame();
-    GAME.coords.y = -1;
-    updateScore();
+  $(document).on('click', '.play', () => clearGame());
+
+  $(document).on('click', '.resume', () => {
+    GAME.coords.y--;
+    GAME.over = false;
     startAnimation();
   })
 
-
-
-
-  // GAME.board = createBoard(12, 20);
-  // readKeyInput()
-  // resetGame();
-  // updateScore();
-  // startAnimation();
+  $('.pause').on('click', () => {
+    GAME.over = true;
+    $('.modal-footer').html(
+      '<button class="btn btn-success modal-btn resume" data-dismiss="modal">Resume</button>'
+    );
+    $('.modal-body').text('Click below to resume your game!');
+    $('#modal').modal({
+      show: true,
+      keyboard: false,
+      backdrop: 'static',
+    });
+  })
 }
 
 $(init);
