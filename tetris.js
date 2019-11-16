@@ -27,7 +27,7 @@ const GAME = {
   preview: null,
   over: false,
   score: 0,
-  level: 0,
+  level: 1,
   lines: 0,
   linesToNextLevel: 10,
   dropSpeed: 1000,
@@ -52,7 +52,7 @@ const clearGame = () => {
   GAME.preview = generateTetromino();
   GAME.over = false;
   GAME.score = 0;
-  GAME.level = 0;
+  GAME.level = 1;
   GAME.lines = 0;
   GAME.linesToNextLevel = 10;
   GAME.dropSpeed = 1000;
@@ -173,7 +173,7 @@ const tallyRows = () => {
     updateLines();
 
     if (GAME.lines >= GAME.linesToNextLevel) {
-      GAME.level = Math.floor(GAME.lines / 10);
+      GAME.level = Math.floor(GAME.lines / 10 + 1);
       updateLevel();
       GAME.dropSpeed -= 30;
       GAME.linesToNextLevel = GAME.level * 10;
