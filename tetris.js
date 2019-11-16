@@ -47,9 +47,9 @@ const GAME = {
 const clearGame = () => {
   GAME.board = createBoard(12, 20);
   GAME.start = Date.now();
-  GAME.coords = { x: 0, y: -1 };
-  GAME.tetromino = null;
-  GAME.preview = null;
+  GAME.coords = { x: 5, y: -1 };
+  GAME.tetromino = GAME.preview ? GAME.preview : generateTetromino();
+  GAME.preview = generateTetromino();
   GAME.over = false;
   GAME.socre = 0;
   GAME.level = 1;
@@ -59,6 +59,9 @@ const clearGame = () => {
   GAME.dropCounter = 0;
   GAME.dropStart = 0;
 
+  updateScore();
+  updateLines();
+  updateLevel();
   startAnimation();
 }
 
@@ -199,11 +202,13 @@ const resetGame = () => {
       `<button class="btn btn-info modal-btn play" data-dismiss="modal" style="width: 140px">Play again?</button>`
     );
     
-    $('#modal').modal({
-      show: true,
-      keyboard: false,
-      backdrop: 'static',
-    });
+    setTimeout(() => {
+      $('#modal').modal({
+        show: true,
+        keyboard: false,
+        backdrop: 'static',
+      });
+    }, 3000);
   }
   !GAME.over && showPreview();
 }
