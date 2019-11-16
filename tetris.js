@@ -27,7 +27,7 @@ const GAME = {
   preview: null,
   over: false,
   score: 0,
-  level: 1,
+  level: 0,
   lines: 0,
   linesToNextLevel: 10,
   dropSpeed: 1000,
@@ -51,8 +51,8 @@ const clearGame = () => {
   GAME.tetromino = GAME.preview ? GAME.preview : generateTetromino();
   GAME.preview = generateTetromino();
   GAME.over = false;
-  GAME.socre = 0;
-  GAME.level = 1;
+  GAME.score = 0;
+  GAME.level = 0;
   GAME.lines = 0;
   GAME.linesToNextLevel = 10;
   GAME.dropSpeed = 1000;
@@ -208,7 +208,7 @@ const resetGame = () => {
         keyboard: false,
         backdrop: 'static',
       });
-    }, 3000);
+    }, 2000);
   }
   !GAME.over && showPreview();
 }
