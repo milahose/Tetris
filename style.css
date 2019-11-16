@@ -40,6 +40,10 @@ button {
   margin: 0 auto;
 }
 
+.btn-secondary {
+  border-radius: 3px;
+}
+
 @media screen and (max-width: 640px) {
   #tetris {
     height: 70vh !important;
