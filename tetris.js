@@ -62,6 +62,7 @@ const clearGame = () => {
   updateScore();
   updateLines();
   updateLevel();
+  showPreview();
   startAnimation();
 }
 
@@ -208,7 +209,7 @@ const resetGame = () => {
         keyboard: false,
         backdrop: 'static',
       });
-    }, 2000);
+    }, 1500);
   }
   !GAME.over && showPreview();
 }
