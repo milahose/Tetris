@@ -283,6 +283,7 @@ const readTouchInput = () => {
   }).mouseup(() => {
     clearInterval(intervalId);
     intervalId = null;
+    mouseDownfired = true;
   }).click(() => {
     if (!mouseDownfired) {
       rotate()
