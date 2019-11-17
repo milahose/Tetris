@@ -54,7 +54,8 @@ button {
 }
 
 .mobile-controls button {
-  width: 48px;
+  width: 100px;
+  height: 100px;
   border-color: transparent !important;
   background-color: transparent !important;
 }
