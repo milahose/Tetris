@@ -292,7 +292,7 @@ const readTouchInput = () => {
   }).mouseup(function() {
     clearInterval(intervalId);
     intervalId = null;
-  }).clic(() => {
+  }).click(() => {
     clearInterval(intervalId);
     intervalId = null;
     requestId && drop()
