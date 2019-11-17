@@ -274,12 +274,14 @@ const readKeyInput = () => {
 }
 
 const readTouchInput = () => {
-  $('mb-up').on('tap', () => {
-    rotate();
-  });
-
-  $('mb-up').on('taphold', () => {
-    rotate();
+  $(document).on('pagecreate', () => {
+    $('mb-up').on('tap', () => {
+      rotate();
+    });
+  
+    $('mb-up').on('taphold', () => {
+      rotate();
+    });
   });
 
   $('mb-down').on('tap', () => {
