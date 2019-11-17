@@ -1,6 +1,7 @@
 * {
-  touch-action: none;
-  -webkit-touch-action: none;
+  touch-action: manipulation !important;
+  user-select: none;
+  -webkit-touch-action: manipulation !important;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
 	background-color: '#000';
