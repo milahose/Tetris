@@ -67,10 +67,11 @@ const clearGame = () => {
 }
 
 const generateTetromino = () => (
-  tetrominoes['ILJOZSTILJOZSTILJOZSTILJOZSTILJOZSTILJOZSTILJOZST'[Math.floor(Math.random() * 49 / 7)]]
+  tetrominoes['ILJOZST'[Math.floor(Math.random() * 7)]]
 )
 
 const createBoard = (width, height) => (
+  // create board based on width/height of canvas, fill with 0 initially
 	[...new Array(height)].map(() => [...new Array(width).fill(0)])
 )
 
@@ -102,6 +103,8 @@ const move = offset => {
 
 const rotate = () => {
   const { tetromino } = GAME;
+
+  // transpose and reverse the pieces
   for (let y = 0; y < tetromino.length; ++y) {
     for (let x = 0; x < y; ++x) {
       [
@@ -122,6 +125,7 @@ const rotate = () => {
 }
 
 const merge = board => {
+  // Add new piece to board if no collision detected
   GAME.tetromino.forEach((row, y) => {
     row.forEach((value, x) => {
       if (value !== 0) {
@@ -135,6 +139,7 @@ const collisionDetected = () => {
   const { board, tetromino, coords } = GAME;
   for (let y = 0; y < tetromino.length; y++) {
     for (let x = 0; x < tetromino[y].length; x++) {
+      // if it is not a valid position in the array, there is a collision
       if (tetromino[y][x] !== 0 &&
         (board[y + coords.y] && board[y + coords.y][x + coords.x]) !== 0) {
         return true;
@@ -189,6 +194,7 @@ const tallyRows = () => {
 }
 
 const resetGame = () => {
+  // Drop new piece, generate new preview piece
   GAME.tetromino = GAME.preview ? GAME.preview : generateTetromino();
   GAME.preview = generateTetromino();
   GAME.coords.y = 0;
@@ -224,6 +230,7 @@ const startAnimation = (time = 0) => {
 
   GAME.dropStart = time;
 
+  // Stopping condition for requestAnimationFrame
   if (!GAME.over) {
     draw();
     requestId = requestAnimationFrame(startAnimation);
@@ -268,7 +275,7 @@ const readKeyInput = () => {
 
 const init = () => {
   readKeyInput();
-  $('body').css('background-color', 'black')
+  $('body').css('background-color', 'black');
 
   $('#modal').modal({
     show: true,
@@ -276,6 +283,7 @@ const init = () => {
     backdrop: 'static',
   })
 
+  // App event listeners
   $(document).on('click', '.play', () => clearGame());
 
   $(document).on('click', '.resume', () => {
