@@ -275,12 +275,18 @@ const readKeyInput = () => {
 
 const readTouchInput = () => {
   let intervalId = null;
+  let mouseDownfired = false;
 
   $('.mb-up').on('mousedown', () => {
+    mouseDownfired = true;
     intervalId = setInterval(() => rotate(), 100);
   }).mouseup(() => {
     clearInterval(intervalId);
     intervalId = null;
+  }).click(() => {
+    if (!mouseDownfired) {
+      rotate()
+    }
   });
 
   $('.mb-down').on('mousedown', () => {
