@@ -298,16 +298,16 @@ const readTouchInput = () => {
     requestId && drop()
   });
 
-  $('.mb-down').on('touchstart', () => {
-    intervalId = setInterval(() => requestId && drop(), 90);
-  }).on('touchend')(() => {
-    clearInterval(intervalId);
-    intervalId = null;
-  }).click(() => {
-    clearInterval(intervalId);
-    intervalId = null;
-    requestId && drop()
-  });
+  // $('.mb-down').on('touchstart', () => {
+  //   intervalId = setInterval(() => requestId && drop(), 90);
+  // }).on('touchend')(() => {
+  //   clearInterval(intervalId);
+  //   intervalId = null;
+  // }).click(() => {
+  //   clearInterval(intervalId);
+  //   intervalId = null;
+  //   requestId && drop()
+  // });
 
   $('.mb-right').on('mousedown', () => {
     intervalId = setInterval(() => move(1), 100);
