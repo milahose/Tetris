@@ -49,15 +49,14 @@ button {
   border: none !important;
 }
 
-.mobile-controls {
-  margin: 0 auto !important;
-}
-
 .mobile-controls button {
-  width: 100px;
-  height: 100px;
+  width: 48px;
   border-color: transparent !important;
   background-color: transparent !important;
+}
+
+.mobile-controls button:focus {
+  outline: none !important;
 }
 
 .fa {

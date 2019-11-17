@@ -274,31 +274,44 @@ const readKeyInput = () => {
 }
 
 const readTouchInput = () => {
-  // $(document).on('pagecreate', () => {
-  //   $('mb-up').on('tap', () => {
-  //     rotate();
-  //   });
-  
-  //   $('mb-up').on('taphold', () => {
-  //     rotate();
-  //   });
+  let intervalId = null;
+
+  $('.mb-down').mousedown(() => {
+    intervalId = setInterval(() => requestId && drop(), 100);
+  }).mouseup(function() {
+      clearInterval(intervalId);
+  });
+
+  $('.mb-up').mousedown(e => {
+    intervalId = requestAnimationFrame()
+  });
+
+  $('.mb-up').mouseup(() => {
+    mouseDown = false
+  });
+
+  $('.mb-down').mousedown(e => {
+    // mouseDown = true;
+    // repeat('down');
+    console.log('mouse down')
+  });
+
+  $('.mb-down').mouseup(() => {
+    // mouseDown = false
+    console.log('mouse up')
+  });
+
+  // $('.mb-down').on('mousedown', () => {
+  //   requestId && drop();
   // });
 
-  $('mb-up').on('click mousedown', () => {
-    rotate();
-  });
+  // $('.mb-right').on('mousedown', () => {
+  //   move(1);
+  // });
 
-  $('mb-down').on('click mousedown', () => {
-    requestId && drop();
-  });
-
-  $('mb-right').on('click mousedown', () => {
-    move(1);
-  });
-
-  $('mb-left').on('click mousedown', () => {
-    move(-1);
-  });
+  // $('.mb-left').on('mousedown', () => {
+  //   move(-1);
+  // });
 
   // $('#tetris').bind('touchstart', e => {
   //   $('mb-down').on('tap', () => {
