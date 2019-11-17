@@ -287,16 +287,16 @@ const readTouchInput = () => {
     rotate();
   });
 
-  $('.mb-up').on('touchstart', () => {
-    intervalId = setInterval(() => rotate(), 90);
-  }).on('touchend', () => {
-    clearInterval(intervalId);
-    intervalId = null;
-  }).on('click', () => {
-    clearInterval(intervalId);
-    intervalId = null;
-    intervalId = setInterval(() => rotate(), 90);
-  });
+  // $('.mb-up').on('touchstart', () => {
+  //   intervalId = setInterval(() => rotate(), 90);
+  // }).on('touchend', () => {
+  //   clearInterval(intervalId);
+  //   intervalId = null;
+  // }).on('click', () => {
+  //   clearInterval(intervalId);
+  //   intervalId = null;
+  //   intervalId = setInterval(() => rotate(), 90);
+  // });
 
   $('.mb-down').on('mousedown', () => {
     intervalId = setInterval(() => requestId && drop(), 90);
@@ -310,11 +310,12 @@ const readTouchInput = () => {
   }).on('touchend', () => {
     clearInterval(intervalId);
     intervalId = null;
-  }).on('click', () => {
-    clearInterval(intervalId);
-    intervalId = null;
-    requestId && drop()
-  });
+  })
+  // .on('click', () => {
+  //   clearInterval(intervalId);
+  //   intervalId = null;
+  //   requestId && drop()
+  // });
 
   $('.mb-right').on('mousedown', () => {
     intervalId = setInterval(() => move(1), 100);
@@ -327,16 +328,16 @@ const readTouchInput = () => {
     move(1);
   });
 
-  $('.mb-right').on('touchstart', () => {
-    intervalId = setInterval(() => move(1), 100);
-  }).on('touchend', () => {
-    clearInterval(intervalId);
-    intervalId = null;
-  }).on('click', () => {
-    clearInterval(intervalId);
-    intervalId = null;
-    intervalId = setInterval(() => move(1), 100);
-  });
+  // $('.mb-right').on('touchstart', () => {
+  //   intervalId = setInterval(() => move(1), 100);
+  // }).on('touchend', () => {
+  //   clearInterval(intervalId);
+  //   intervalId = null;
+  // }).on('click', () => {
+  //   clearInterval(intervalId);
+  //   intervalId = null;
+  //   intervalId = setInterval(() => move(1), 100);
+  // });
 
   $('.mb-left').on('mousedown', () => {
     intervalId = setInterval(() => move(-1), 100);
@@ -349,16 +350,16 @@ const readTouchInput = () => {
     move(-1);
   });
 
-  $('.mb-left').on('touchstart', () => {
-    intervalId = setInterval(() => move(-1), 100);
-  }).on('touchend', () => {
-    clearInterval(intervalId);
-    intervalId = null;
-  }).on('click', () => {
-    clearInterval(intervalId);
-    intervalId = null;
-    intervalId = setInterval(() => move(-1), 100);
-  });
+  // $('.mb-left').on('touchstart', () => {
+  //   intervalId = setInterval(() => move(-1), 100);
+  // }).on('touchend', () => {
+  //   clearInterval(intervalId);
+  //   intervalId = null;
+  // }).on('click', () => {
+  //   clearInterval(intervalId);
+  //   intervalId = null;
+  //   intervalId = setInterval(() => move(-1), 100);
+  // });
 }
 
 const init = () => {
