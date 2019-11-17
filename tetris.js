@@ -303,11 +303,7 @@ const readTouchInput = () => {
   }).mouseup(() => {
     clearInterval(intervalId);
     intervalId = null;
-  }).click(() => {
-    clearInterval(intervalId);
-    intervalId = null;
-    requestId && drop()
-  });
+  })
 
   $('.mb-down').on('touchstart', () => {
     intervalId = setInterval(() => requestId && drop(), 90);
