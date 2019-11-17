@@ -276,7 +276,35 @@ const readKeyInput = () => {
 const readTouchInput = () => {
   $('mb-up').on('tap', () => {
     rotate();
-  })
+  });
+
+  $('mb-up').on('taphold', () => {
+    rotate();
+  });
+
+  $('mb-down').on('tap', () => {
+    requestId && drop();
+  });
+
+  $('mb-down').on('taphold', () => {
+    requestId && drop();
+  });
+
+  $('mb-right').on('tap', () => {
+    move(1);
+  });
+
+  $('mb-right').on('taphold', () => {
+    move(1);
+  });
+
+  $('mb-left').on('tap', () => {
+    move(-1);
+  });
+
+  $('mb-left').on('taphold', () => {
+    move(-1);
+  });
 }
 
 const init = () => {
