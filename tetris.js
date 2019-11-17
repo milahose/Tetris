@@ -276,21 +276,10 @@ const readKeyInput = () => {
 const readTouchInput = () => {
   let intervalId = null;
 
-  $('.mb-up').on('mousedown', () => {
+  $('.mb-up').on('mousedown touchstart', () => {
     console.log('mousedown')
     intervalId = setInterval(() => rotate(), 90);
-  }).mouseup(() => {
-    clearInterval(intervalId);
-    intervalId = null;
-  }).click(() => {
-    clearInterval(intervalId);
-    intervalId = null;
-  })
-
-  $('.mb-up').on('touchstart', () => {
-    console.log('touch start')
-    intervalId = setInterval(() => rotate(), 90);
-  }).on('touchend', () => {
+  }).on('mouseup touchend', () => {
     clearInterval(intervalId);
     intervalId = null;
   }).click(() => {
@@ -298,6 +287,18 @@ const readTouchInput = () => {
     intervalId = null;
     rotate();
   })
+
+  // $('.mb-up').on('touchstart', () => {
+  //   console.log('touch start')
+  //   intervalId = setInterval(() => rotate(), 90);
+  // }).on('touchend', () => {
+  //   clearInterval(intervalId);
+  //   intervalId = null;
+  // }).click(() => {
+  //   clearInterval(intervalId);
+  //   intervalId = null;
+  //   // rotate();
+  // })
 
   // $('mb-up').click(() => {
   //   console.log('click')
