@@ -49,6 +49,27 @@ button {
   border: none !important;
 }
 
+.mobile-controls {
+  margin: 0 auto !important;
+}
+
+.mobile-controls button {
+  width: 48px;
+  border-color: transparent !important;
+  background-color: transparent !important;
+}
+
+.fa {
+  color: grey;
+  font-size: 26px;
+}
+
+.fa-arrow-down {
+  margin-top: 
+}
+
+
+
 @media screen and (max-width: 640px) {
   #tetris {
     height: 70vh !important;

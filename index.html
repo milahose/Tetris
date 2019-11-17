@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
   <link rel="stylesheet" href="style.css" />
   <title>Tetris</title>
@@ -17,6 +18,18 @@
       <canvas id="tetris">
         You're browser does not support canvas. Please try a different browser (Chrome is always a good choice!).
       </canvas>
+      <div class="d-flex flex-column justify-content-center mobile-controls d-sm-none">
+        <div class="mx-auto">
+          <button><i class="fa fa-arrow-up"></i></button>
+        </div>
+        <div class="mx-auto">
+          <button><i class="fa fa-arrow-left"></i></button>
+          <button><i class="fa fa-arrow-right"></i></button>
+        </div>
+        <div class="mx-auto">
+          <button><i class="fa fa-arrow-down"></i></button>
+        </div>
+      </div>
     </div>
     <div class="p-2">
       <p>Up Next:</p>
@@ -49,6 +62,7 @@
 
   <!-- scripts -->
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
   <script src="tetrominoes.js"></script>
   <script src="tetris.js"></script>

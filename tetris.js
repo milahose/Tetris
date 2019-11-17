@@ -273,8 +273,16 @@ const readKeyInput = () => {
   })
 }
 
+const readTouchInput = () => {
+  $('mb-up').on('tap', () => {
+    rotate();
+  })
+}
+
 const init = () => {
   readKeyInput();
+  readTouchInput();
+
   $('body').css('background-color', 'black');
 
   $('#modal').modal({
