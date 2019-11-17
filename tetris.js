@@ -274,14 +274,22 @@ const readKeyInput = () => {
 }
 
 const readTouchInput = () => {
-  $(document).on('pagecreate', () => {
-    $('mb-up').on('tap', () => {
-      rotate();
-    });
+  // $(document).on('pagecreate', () => {
+  //   $('mb-up').on('tap', () => {
+  //     rotate();
+  //   });
   
-    $('mb-up').on('taphold', () => {
-      rotate();
-    });
+  //   $('mb-up').on('taphold', () => {
+  //     rotate();
+  //   });
+  // });
+
+  $('mb-up').on('click', () => {
+    rotate();
+  });
+
+  $('mb-up').on('onmousedown', () => {
+    rotate();
   });
 
   $('mb-down').on('tap', () => {
