@@ -276,86 +276,33 @@ const readKeyInput = () => {
 const readTouchInput = () => {
   let intervalId = null;
 
-  $('.mb-down').mousedown(() => {
-    intervalId = setInterval(() => requestId && drop(), 100);
+  $('.mb-up').mousedown(() => {
+    intervalId = setInterval(() => rotate(), 90);
   }).mouseup(function() {
       clearInterval(intervalId);
+      intervalId = null
   });
 
-  $('.mb-up').mousedown(e => {
-    intervalId = requestAnimationFrame()
+  $('.mb-down').mousedown(() => {
+    intervalId = setInterval(() => requestId && drop(), 90);
+  }).mouseup(function() {
+      clearInterval(intervalId);
+      intervalId = null
   });
 
-  $('.mb-up').mouseup(() => {
-    mouseDown = false
+  $('.mb-right').mousedown(() => {
+    intervalId = setInterval(() => move(1), 90);
+  }).mouseup(function() {
+      clearInterval(intervalId);
+      intervalId = null
   });
 
-  $('.mb-down').mousedown(e => {
-    // mouseDown = true;
-    // repeat('down');
-    console.log('mouse down')
+  $('.mb-left').mousedown(() => {
+    intervalId = setInterval(() => move(-1), 90);
+  }).mouseup(function() {
+      clearInterval(intervalId);
+      intervalId = null
   });
-
-  $('.mb-down').mouseup(() => {
-    // mouseDown = false
-    console.log('mouse up')
-  });
-
-  // $('.mb-down').on('mousedown', () => {
-  //   requestId && drop();
-  // });
-
-  // $('.mb-right').on('mousedown', () => {
-  //   move(1);
-  // });
-
-  // $('.mb-left').on('mousedown', () => {
-  //   move(-1);
-  // });
-
-  // $('#tetris').bind('touchstart', e => {
-  //   $('mb-down').on('tap', () => {
-  //     requestId && drop();
-  //   });
-  
-  //   $('mb-down').on('taphold', () => {
-  //     requestId && drop();
-  //   });
-  // });
-
-  
-
-  // $('mb-up').on('click', () => {
-  //   rotate();
-  // });
-
-  // $('mb-up').on('onmousedown', () => {
-  //   rotate();
-  // });
-
-  // $('mb-down').on('tap', () => {
-  //   requestId && drop();
-  // });
-
-  // $('mb-down').on('taphold', () => {
-  //   requestId && drop();
-  // });
-
-  // $('mb-right').on('tap', () => {
-  //   move(1);
-  // });
-
-  // $('mb-right').on('taphold', () => {
-  //   move(1);
-  // });
-
-  // $('mb-left').on('tap', () => {
-  //   move(-1);
-  // });
-
-  // $('mb-left').on('taphold', () => {
-  //   move(-1);
-  // });
 }
 
 const init = () => {
