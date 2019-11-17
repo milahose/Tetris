@@ -1,4 +1,4 @@
-body {
+* {
   touch-action: none;
   -webkit-touch-action: none;
   -webkit-touch-callout: none;
