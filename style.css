@@ -69,11 +69,21 @@ button {
   font-size: 26px;
 }
 
-.fa-arrow-down {
-  margin-top: 
+.mb-up-container {
+  margin-bottom: 20px;
 }
 
+.mb-down-container {
+  margin-top: 20px;
+}
 
+.mb-left {
+  margin-right: 15px;
+}
+
+.mb-right {
+  margin-left: 15px;
+}
 
 @media screen and (max-width: 640px) {
   #tetris {
