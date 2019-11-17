@@ -284,6 +284,16 @@ const readTouchInput = () => {
   //   });
   // });
 
+  $('#tetris').bind('touchstart', e => {
+    $('mb-down').on('tap', () => {
+      requestId && drop();
+    });
+  
+    $('mb-down').on('taphold', () => {
+      requestId && drop();
+    });
+  });
+
   $('mb-up').on('click', () => {
     rotate();
   });
