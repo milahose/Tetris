@@ -296,6 +296,7 @@ const readTouchInput = () => {
   }).click(() => {
     clearInterval(intervalId);
     intervalId = null;
+    rotate();
   })
 
   // $('mb-up').click(() => {
