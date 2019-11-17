@@ -284,47 +284,65 @@ const readTouchInput = () => {
   //   });
   // });
 
-  $('#tetris').bind('touchstart', e => {
-    $('mb-down').on('tap', () => {
-      requestId && drop();
-    });
+  $('mb-up').on('click mousedown', () => {
+    rotate();
+  });
+
+  $('mb-down').on('click mousedown', () => {
+    requestId && drop();
+  });
+
+  $('mb-right').on('click mousedown', () => {
+    move(1);
+  });
+
+  $('mb-left').on('click mousedown', () => {
+    move(-1);
+  });
+
+  // $('#tetris').bind('touchstart', e => {
+  //   $('mb-down').on('tap', () => {
+  //     requestId && drop();
+  //   });
   
-    $('mb-down').on('taphold', () => {
-      requestId && drop();
-    });
-  });
+  //   $('mb-down').on('taphold', () => {
+  //     requestId && drop();
+  //   });
+  // });
 
-  $('mb-up').on('click', () => {
-    rotate();
-  });
+  
 
-  $('mb-up').on('onmousedown', () => {
-    rotate();
-  });
+  // $('mb-up').on('click', () => {
+  //   rotate();
+  // });
 
-  $('mb-down').on('tap', () => {
-    requestId && drop();
-  });
+  // $('mb-up').on('onmousedown', () => {
+  //   rotate();
+  // });
 
-  $('mb-down').on('taphold', () => {
-    requestId && drop();
-  });
+  // $('mb-down').on('tap', () => {
+  //   requestId && drop();
+  // });
 
-  $('mb-right').on('tap', () => {
-    move(1);
-  });
+  // $('mb-down').on('taphold', () => {
+  //   requestId && drop();
+  // });
 
-  $('mb-right').on('taphold', () => {
-    move(1);
-  });
+  // $('mb-right').on('tap', () => {
+  //   move(1);
+  // });
 
-  $('mb-left').on('tap', () => {
-    move(-1);
-  });
+  // $('mb-right').on('taphold', () => {
+  //   move(1);
+  // });
 
-  $('mb-left').on('taphold', () => {
-    move(-1);
-  });
+  // $('mb-left').on('tap', () => {
+  //   move(-1);
+  // });
+
+  // $('mb-left').on('taphold', () => {
+  //   move(-1);
+  // });
 }
 
 const init = () => {
