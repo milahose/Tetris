@@ -303,6 +303,11 @@ const readTouchInput = () => {
       clearInterval(intervalId);
       intervalId = null
   });
+
+  $('.mb-up').click(() => rotate());
+  $('.mb-down').click(() => requestId && drop());
+  $('.mb-right').click(() => move(1));
+  $('.mb-left').click(() => move(-1));
 }
 
 const init = () => {
