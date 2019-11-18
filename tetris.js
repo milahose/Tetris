@@ -281,6 +281,10 @@ const readTouchInput = () => {
   let left = false;
 
   $('.mb-up').on('mousedown', () => {
+    // These variables prevent the functions
+    // from being run a second time on the 
+    // click event, if they've already been
+    // called on the mousedown event.
     up = true;
     intervalId = setInterval(() => rotate(), 90);
   }).mouseup(() => {
