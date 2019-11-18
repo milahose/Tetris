@@ -377,7 +377,7 @@ const init = () => {
     backdrop: 'static',
   })
 
-  // App event listeners
+  // App event listeners for modal
   $(document).on('click', '.play', () => clearGame());
 
   $(document).on('click', '.resume', () => {
